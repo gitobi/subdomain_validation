@@ -3,9 +3,28 @@ require 'rails_helper'
 RSpec.describe Site, type: :model do
   describe 'validations' do
     subject { site }
-    let(:site) { build :site, name: name }
+    let(:site) { build :site, name: name, name_with_option: name_with_option }
+    let(:name)             { 'www' }
+    let(:name_with_option) { 'www' }
 
     describe 'name' do
+
+      context 'when name is nil without allow_nil option' do
+        let(:name) { nil }
+        it { is_expected.to_not be_valid }
+      end
+      context 'when name_with_option is nil with allow_nil option' do
+        let(:name_with_option) { nil }
+        it { is_expected.to be_valid }
+      end
+      context 'when name is blank without allow_blank option' do
+        let(:name) { '' }
+        it { is_expected.to_not be_valid }
+      end
+      context 'when name_with_option is blank with allow_blank option' do
+        let(:name_with_option) { '' }
+        it { is_expected.to be_valid }
+      end
 
       context 'when name is 2 characters' do
         let(:name) { 'w' * 2 }
