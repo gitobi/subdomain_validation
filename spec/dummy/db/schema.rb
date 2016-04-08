@@ -16,8 +16,9 @@ ActiveRecord::Schema.define(version: 20160407040719) do
   create_table "sites", force: :cascade do |t|
     t.string   "name"
     t.string   "name_with_option"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "name_with_reserved_name_false"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end

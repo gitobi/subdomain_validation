@@ -7,6 +7,7 @@ module SubdomainValidation
         return
       end
 
+      record.errors.add(attribute, 'can not use reserved word') if reserved_name.include?(value)
       record.errors.add(attribute, :too_short, count: 3) if value.length < 3
       record.errors.add(attribute, :too_long, count: 63) if 63 < value.length
 
@@ -14,6 +15,18 @@ module SubdomainValidation
 
       record.errors.add(attribute, 'can not start with -') if value =~ /^-/
       record.errors.add(attribute, 'can not end with -') if value =~ /-$/
+    end
+
+    private
+    def reserved_name
+      case options[:reserved_name]
+      when nil
+        %w(www http https ftp sftp ssl ns mx pop smtp admin mail users)
+      when false
+        []
+      else
+        options[:reserved_name]
+      end
     end
   end
 end
