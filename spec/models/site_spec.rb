@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe Site, type: :model do
   describe 'validations' do
     subject { site }
-    let(:site) { build :site, name: name, name_with_option: name_with_option }
-    let(:name)             { 'www' }
-    let(:name_with_option) { 'www' }
+    let(:site) { build :site, name: name, name_with_option: name_with_option, name_with_reserved_name_false: name_with_reserved_name_false }
+    let(:name)                          { 'web' }
+    let(:name_with_option)              { 'web' }
+    let(:name_with_reserved_name_false) { 'web' }
 
     describe 'name' do
 
@@ -26,20 +27,37 @@ RSpec.describe Site, type: :model do
         it { is_expected.to be_valid }
       end
 
+      context 'when name is default reserved name' do
+        let(:name) { 'www' }
+        it { is_expected.to_not be_valid }
+      end
+      context 'when name is default reserved name with reserved name option' do
+        let(:name_with_option) { 'www' }
+        it { is_expected.to be_valid }
+      end
+      context 'when name is reserved name with reserved name option' do
+        let(:name_with_option) { 'blog' }
+        it { is_expected.to_not be_valid }
+      end
+      context 'when name is default reserved name with reserved name option false' do
+        let(:name_with_reserved_name_false) { 'www' }
+        it { is_expected.to be_valid }
+      end
+
       context 'when name is 2 characters' do
-        let(:name) { 'w' * 2 }
+        let(:name) { 'a' * 2 }
         it { is_expected.to_not be_valid }
       end
       context 'when name is 3 characters' do
-        let(:name) { 'w' * 3 }
+        let(:name) { 'a' * 3 }
         it { is_expected.to be_valid }
       end
       context 'when name is 63 characters' do
-        let(:name) { 'w' * 63 }
+        let(:name) { 'a' * 63 }
         it { is_expected.to be_valid }
       end
       context 'when name is 64 characters' do
-        let(:name) { 'w' * 64 }
+        let(:name) { 'a' * 64 }
         it { is_expected.to_not be_valid }
       end
 
