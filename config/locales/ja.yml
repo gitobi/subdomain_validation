@@ -1,0 +1,7 @@
+ja:
+  subdomain_validation:
+    errors:
+      messages:
+        label:           "は半角英数とハイフンのみ使用できます"
+        first_character: "は頭文字にハイフンを使用することはできません"
+        last_character:  "は末尾にハイフンを使用することはできません"
