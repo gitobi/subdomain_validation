@@ -1,0 +1,7 @@
+en:
+  subdomain_validation:
+    errors:
+      messages:
+        label:           "can only include letters and numbers and \"-\""
+        first_character: "can't start with \"-\""
+        last_character:  "can't end with \"-\""

@@ -7,14 +7,14 @@ module SubdomainValidation
         return
       end
 
-      record.errors.add(attribute, 'can not use reserved word') if reserved_name.include?(value)
+      record.errors.add(attribute, :taken) if reserved_name.include?(value)
       record.errors.add(attribute, :too_short, count: 3) if value.length < 3
       record.errors.add(attribute, :too_long, count: 63) if 63 < value.length
 
-      record.errors.add(attribute, 'can only include letters and numbers and -') if value =~ /[^A-Za-z0-9\-]/
+      record.errors.add(attribute, I18n.t('subdomain_validation.errors.messages.label')) if value =~ /[^A-Za-z0-9\-]/
 
-      record.errors.add(attribute, 'can not start with -') if value =~ /^-/
-      record.errors.add(attribute, 'can not end with -') if value =~ /-$/
+      record.errors.add(attribute, I18n.t('subdomain_validation.errors.messages.first_character')) if value =~ /^-/
+      record.errors.add(attribute, I18n.t('subdomain_validation.errors.messages.last_character')) if value =~ /-$/
     end
 
     private
