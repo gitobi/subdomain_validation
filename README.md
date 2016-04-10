@@ -14,7 +14,7 @@ Run bundler.
 
 ## How to use
 
-Add `SubdomainValidation` module to a model.
+First, Add `SubdomainValidation` module to a model.
 
 ```rb
 class User < ActiveRecord::Base
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-Add `validates` method on a column in the model.
+Next, add `validates` method on a column in the model.
 
 ```rb
 class User < ActiveRecord::Base
@@ -72,10 +72,15 @@ end
 ### Options
 
 - reserved_name
+  - Values: String Array or False
   - String Array
-  - You can reserve the words which can not be taken.
-  - If use this option, then default reserved_name will be disabled.
-  - `validates :username, subdomain: { reserved_name: %w(www blog admin) }`
+    - You can reserve the words which can not be taken.
+    - If use this option, then default reserved_name will be disabled.
+    - `validates :username, subdomain: { reserved_name: %w(www blog admin) }`
+  - False
+    - You can disable reserved_name feature.
+    - If use this option, then default reserved_name will be disabled.
+    - `validates :username, subdomain: { reserved_name: false }`
 
 ### I18n
 
