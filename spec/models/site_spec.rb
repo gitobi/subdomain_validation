@@ -32,6 +32,18 @@ RSpec.describe Site, type: :model do
         let(:name_with_option) { '' }
         it { is_expected.to be_valid }
       end
+      context 'when name_with_option is reserved_name with on create option' do
+        let(:name_with_option) { 'blog' }
+        it 'is not valid on create and is valid on update' do
+          # Create
+          is_expected.to_not be_valid
+          subject.name_with_option = 'www'
+          subject.save
+          # Update
+          subject.name_with_option = 'blog'
+          is_expected.to be_valid
+        end
+      end
 
       context 'when name is default reserved name' do
         let(:name) { 'www' }
