@@ -77,6 +77,23 @@ end
   - If use this option, then default reserved_name will be disabled.
   - `validates :username, subdomain: { reserved_name: %w(www blog admin) }`
 
+### I18n
+
+You can customize or add validation error messages.
+Add following keys to your locale file in config/locales.
+
+```yaml
+en:
+  subdomain_validation:
+    errors:
+      messages:
+        label:           "can only include letters and numbers and \"-\""
+        first_character: "can't start with \"-\""
+        last_character:  "can't end with \"-\""
+```
+
+Or, make a pull request :)
+
 # License
 
 This project rocks and uses MIT-LICENSE.

@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    subdomain_validation (0.0.1)
-      rails (~> 4.2.6)
+    subdomain_validation (0.1.1)
+      rails (~> 4.2, >= 4.2.6)
 
 GEM
   remote: https://rubygems.org/
@@ -140,10 +140,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  factory_girl_rails
-  pry-byebug
-  rspec-rails
-  sqlite3
+  factory_girl_rails (~> 4.6, >= 4.6.0)
+  pry-byebug (~> 3.3, >= 3.3.0)
+  rspec-rails (~> 3.4, >= 3.4.2)
+  sqlite3 (~> 1.3, >= 1.3.11)
   subdomain_validation!
 
 BUNDLED WITH

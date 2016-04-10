@@ -99,7 +99,7 @@ RSpec.describe Site, type: :model do
         let(:name) { 'w$w' }
         it 'is not valid and set an error message' do
           is_expected.to_not be_valid
-          expect(subject.errors[:name]).to include I18n.t('subdomain_validation.errors.messages.first_character')
+          expect(subject.errors[:name]).to include I18n.t('subdomain_validation.errors.messages.label')
         end
       end
       context 'when name includes .' do
