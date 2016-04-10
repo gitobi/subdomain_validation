@@ -81,6 +81,16 @@ end
     - You can disable reserved_name feature.
     - If use this option, then default reserved_name will be disabled.
     - `validates :username, subdomain: { reserved_name: false }`
+- Common options
+  - allow_nil
+    - You can allow nil value by using allow_nil option.
+    - `validates :username, subdomain: true, allow_nil: true`
+  - allow_blank
+    - You can allow blank value by using allow_blank option.
+    - `validates :username, subdomain: true, allow_blank: true`
+  - on
+    - You can specify when the validation should happen.
+    - `validates :username, subdomain: true, on: :create`
 
 ### I18n
 
